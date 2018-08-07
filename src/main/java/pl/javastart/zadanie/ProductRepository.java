@@ -3,46 +3,29 @@ package pl.javastart.zadanie;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class ProductRepository {
-    private List<Product> listaProduktow;
+    private List<Product> productList = new ArrayList<>();
 
     public ProductRepository() {
-        listaProduktow = new ArrayList<>();
-        listaProduktow.add(new Product("Chleb", 2.33, "http://piekarnia.shoparena.pl/userdata/gfx/51b1ea1c6163924f400d626ecda15665.jpg"));
-        listaProduktow.add(new Product("Bułka", 0.33, "http://lalorraine.pl/wp-content/uploads/2016/11/20161115-bulka_rezyczka_jasna_4045130.jpg"));
-        listaProduktow.add(new Product("Rogal", 1.33, "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Rogalik.jpg/220px-Rogalik.jpg"));
+
+        this.productList.add(new Product("Chleb", 2.33, "https://res.cloudinary.com/dj484tw6k/f_auto,q_auto,c_pad,b_white,w_360,h_360/v1499888716/be/81511.jpg"));
+        this.productList.add(new Product("Bułka", 0.33, "https://res.cloudinary.com/dj484tw6k/f_auto,q_auto,c_pad,b_white,w_360,h_360/v1499888687/be/81481.jpg"));
+        this.productList.add(new Product("Rogal", 1.33, "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Rogalik.jpg/220px-Rogalik.jpg"));
     }
 
-    public void setListaProduktow(List<Product> listaProduktow) {
-        this.listaProduktow = listaProduktow;
+    public List<Product> getProductList() {
+        return productList;
     }
 
-    public List<Product> getListaProduktow() {
-
-        return listaProduktow;
-    }
-
-    public Product findByName(String nazwa) {
-
-        Product product1 = null ;
-        for (Product produkt : listaProduktow) {
-            if (produkt.getNazwa().equals(nazwa)) {
-                product1 = produkt;
+    public double getPriceProductName(String nazwa){
+        for(Product product:productList){
+            if(product.getNazwa().equals(nazwa)){
+                return product.getCena();
             }
-
         }
-        return product1;
-    }
-    public Map<Product, Integer> addNewList(Product produkt, Integer ilosc){
-        Map<Product, Integer> kosz = new HashMap<>();
-        kosz.put(produkt, ilosc);
-        return kosz;
-
-
+        return 0;
     }
 }

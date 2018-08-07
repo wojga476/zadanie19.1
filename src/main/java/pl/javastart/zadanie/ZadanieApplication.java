@@ -9,7 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
 public class ZadanieApplication {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext context = SpringApplication.run(ZadanieApplication.class, args);
-        context.getBean(MainController.class);
+        SpringApplication.run(ZadanieApplication.class, args);
     }
-    }
+}

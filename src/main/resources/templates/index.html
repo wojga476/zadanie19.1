@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Piekarnia</title>
+        <title>Piekarnia</title>
 </head>
 <body>
-<h1>Piekarnia</h1>
-<p>Dodaj produkty</p>
-
-<div th:each="product: ${produkty} ">
-    <h3 th:text="${product.nazwa}"></h3>
-    <h3 th:text="${product.cena} + zł"></h3>
-    <img th:src="${product.url}" height="100px"/>
-    <form action="/addItem" method="post" >
-        <input type="text" th:value="${product.nazwa}" hidden th:name="nazwa"/>
-        Liczba:<input type="number" th:name="ilosc" min="0"/><br>
-        <input type="submit"  th:value="Dodaj"/>
-
+<h1>Witaj w  naszej piekarni</h1>
+<br/>
+<p>Dodaj do koszyka wybrane produkty</p>
+<div th:each="productRep:${productRepository}">
+    <h2 th:text="${productRep.getNazwa()}"></h2>
+    <p th:text="'Cena ' + ${productRep.getCena()} + ' zł'"></p><br/>
+    <img th:src="${productRep.getUrl()}"/>
+    <br/>
+    <br/>
+    <form action="/addbasket" method="post">
+        <input type="hidden" th:value="${productRep.getNazwa()}" name="name"/>
+        Ilość <input type="number" step="1" min="1" value="1" name="quantity"/>
+        <input type="submit" value="Dodaj">
     </form>
-
-
 </div>
 
 </body>

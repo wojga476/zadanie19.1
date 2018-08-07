@@ -6,8 +6,21 @@ public class Product {
     private Double cena;
     private String url;
 
+    public Product(){
+
+    }
+
     public String getNazwa() {
         return nazwa;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "nazwa='" + nazwa + '\'' +
+                ", cena=" + cena +
+                ", url='" + url + '\'' +
+                '}';
     }
 
     public void setNazwa(String nazwa) {
